@@ -38,3 +38,6 @@ userSchema.methods.checkPassword = function (guess, done) {
     done(err, isMatch);
   });
 };
+
+let User = mongoose.model('User', userSchema);
+module.exports = User;

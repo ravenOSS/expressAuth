@@ -1,0 +1,24 @@
+<% include _header %>
+<div class="container">
+
+  <h1>Sign up</h1>
+
+  <form action="/signup" method="post">
+
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" name="username" aria-describedby="userHelp" placeholder="Enter Username"
+        required>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="text" class="form-control" name="password" placeholder="Password" required>
+    </div>
+
+    <button type="submit" value="Signup" class="btn btn-primary">Signup</button>
+
+  </form>
+</div>
+
+<% include _footer %>

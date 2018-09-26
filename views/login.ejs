@@ -1,0 +1,22 @@
+<% include _header %>
+
+<h1>Log In</h1>
+
+  <form action="/login" method="post">
+
+    <form>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" name="username" aria-describedby="userHelp" placeholder="Enter Username">
+        <small id="userHelp" class="form-text text-muted">We'll never share your data with anyone else.</small>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="text" class="form-control" name="password" placeholder="Password">
+      </div>
+
+      <button type="submit" value="Log In" class="btn btn-primary">Submit</button>
+    </form>
+
+<% include _footer %>

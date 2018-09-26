@@ -1,11 +1,47 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
-</html>
+<% include _header %>
+
+<div class="container">
+
+  <!--h2>Our users</h2>
+
+
+    <% users.forEach(function(user) { %>
+    <div class="card-group">
+    <div class="card">
+      <div class="card-body">
+      <h5 class="card-title">Username</h5>
+        <a href="/users/<%= user.username %>">
+          <%= user.name() %>
+        </a>
+      </div>
+
+      <div class="card">
+      <% if (user.bio) { %>
+        <div class="card-body">
+        <h5 class="card-title">User Bio</h5>
+          <%= user.bio %>
+        </div>
+        <% } %>
+      </div>
+
+      <div class="card" >
+        <div class="card-body">
+        <h5 class="card-title">User APIkey</h5>
+        <% if (user.apiKey) { %>
+          <%= user.apiKey %>
+        <% } %>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </div-->
+
+  <% users.forEach(function(user) { %>
+  <!--a href="/users/<%= user.username %>"-->
+  <p> <%= user.username %></p>
+  <p> <%= user.bio %></p>
+  <p> <%= user.apiKey %></p>
+  
+  <% }) %>
+
+  <% include _footer %>

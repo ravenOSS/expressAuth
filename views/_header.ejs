@@ -1,44 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <meta charset='utf-8'>
-  <title>This is me</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>ExpressAuth</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 
 <body>
-  <div class="navbar navbar-default nvabar-static-top" role="navigation">
-    <div class="container">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="/">This is me</a>
+
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Express Auth</a>
+
+    <button class="navbar-toggler" data-toggler="collapse" data-target="#navbarMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <div class="collapse navbar-collapse" id="navbarMenu">
+
+        <ul class="navbar-nav ml-auto">
+
+          <% if (currentUser) { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/edit">Hello,
+              <%= currentUser.name() %></a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Log out</a>
+          </li>
+          <% } else { %>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/">Log in</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/signup">Sign up</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/frontpage">Frontpage</a>
+          </li>
+
+          <% } %>
+        </ul>
       </div>
-      <ul class="nav navbar-nav navbar-right">
-        <% if (currentUser) { %>
-        <li>
-          <a href="/edit">
-          Hello, <%= currentUser.name() %>
-          </a>
-        </li>
-      <li><a href="/login">Log In</a></li>}
-      <li><a href="/signup">Sign Up</a></li>
-      <% } %>
-      </ul>
-    </div>
-  </div>
+  </nav>
+
   <div class="container">
-    <% errors.forEach(function (error) { %>
+
+    <% errors.forEach(function(error) { %>
     <div class="alert alert-danger" role="alert">
       <%= error %>
     </div>
-   <% }) %>
+    <% }) %>
 
-   <% infos.forEach(function (info) { %>
+    <% infos.forEach(function(info) { %>
     <div class="alert alert-info" role="alert">
-      <% info %>
+      <%= info %>
     </div>
     <% }) %>
   </div>
-</body>
-</html>

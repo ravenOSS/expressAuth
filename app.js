@@ -7,11 +7,14 @@ var flash = require('connect-flash');
 var session = require('express-session');
 var logger = require('morgan');
 var mongoose = require('mongoose');
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/routes');
-var routes = require('./routes');
+var passport = require('passport');
+var routes = require('./routes/routes');
+var favicon = require('serve-favicon');
+var setUpPassport = require('./utilities/setuppassport');
 var app = express();
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 mongoose.connect('mongodb://localhost:27017/auth');
 
@@ -29,13 +32,11 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
+app.use(passport.initialize());
+app.use(passport.session());
+setUpPassport();
 app.use(flash());
 app.use(routes);
-
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

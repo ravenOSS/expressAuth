@@ -9,7 +9,7 @@ function ensureAuthenticated (req, res, next) {
     next();
   } else {
     req.flash('info', 'You must be logged in to edit bio.');
-    res.redirect('/login');
+    res.redirect('/');
   }
 }
 
@@ -26,11 +26,15 @@ router.get('/users', ensureAuthenticated, function (req, res, next) {
     .sort({ createdAt: 'descending' })
     .exec(function (err, users) {
       if (err) { return next(err); }
-      res.render('index', { users: users });
+      res.render('userlist', { users: users });
     });
 });
 
 router.get('/', function (req, res) {
+  res.render('frontpage');
+});
+
+router.get('/login', function (req, res) {
   res.render('login');
 });
 
@@ -52,6 +56,10 @@ router.get('/signup', function (req, res) {
 router.post('/signup', function (req, res, next) {
   var username = req.body.username;
   var password = req.body.password;
+  var fname = req.body.fname;
+  var lname = req.body.lname;
+  var email = req.body.email;
+  var telephone = req.body.telephone;
 
   User.findOne({ username: username }, function (err, user) {
     if (err) { return next(err); }
@@ -62,7 +70,11 @@ router.post('/signup', function (req, res, next) {
 
     var newUser = new User({
       username: username,
-      password: password
+      password: password,
+      fname: fname,
+      lname: lname,
+      email: email,
+      telephone: telephone
     });
     newUser.save(next);
   });
@@ -72,9 +84,11 @@ router.post('/signup', function (req, res, next) {
   failureFlash: true
 }));
 
+/*
 router.get('/frontpage', function (req, res) {
   res.render('frontpage');
 });
+*/
 
 router.get('/users/:username', function (req, res, next) {
   User.findOne({ username: req.params.username }, function (err, user) {

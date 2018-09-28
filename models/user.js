@@ -6,10 +6,15 @@ let SALT_FACTOR = 12;
 let userSchema = mongoose.Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now },
-  apiKey: { type: String, default: uuidv4() },
-  displayName: String,
-  bio: String
+  fname: { type: String, required: true },
+  lname: { type: String, required: true },
+  email: { type: String, required: true },
+  telephone: { type: String, required: true },
+  displayName: { type: String },
+  bio: { type: String },
+  createdAt: { type: Date, 'default': Date.now },
+  apiKey: { type: String, 'default': uuidv4() },
+  role: { type: String, 'default': 'technician' }
 });
 
 var noop = function () {};

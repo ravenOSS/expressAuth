@@ -1,5 +1,6 @@
 <% include _header %>
 
+<div class="container">
 <h2>Our users</h2>
 
 <table class="table">
@@ -10,10 +11,9 @@
       <th scope="col">lname</th>
       <th scope="col">email</th>
       <th scope="col">telephone</th>
-
       <th scope="col">Bio</th>
       <th scope="col">APIkey</th>
-            <th scope="col">displayName</th>
+      <th scope="col">displayName</th>
     </tr>
   </thead>
   <tbody>
@@ -51,20 +51,5 @@
   </tbody>
 </table>
 
-<% users.forEach(function(user) { %>
-<a href="/users/<%= user.username %>">
-  <%= user.name() %>
-</a>
-<p>
-  <%= user.username %>
-</p>
-<p>
-  <%= user.bio %>
-</p>
-<p>
-  <%= user.apiKey %>
-</p>
-
-<% }) %>
-
 <% include _footer %>
+</div>

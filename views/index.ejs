@@ -1,0 +1,56 @@
+<% include _header %>
+<% include _css-js.ejs %>
+<% include _test-text %>
+
+<script>
+  $(document).ready(function () {
+    $('#usertable').DataTable({
+      fixedHeader: true,
+      responsive: true,
+      "ajax": {
+        "url": "http://localhost:3000/datatableusers",
+        "dataSrc": ""
+      },
+      columns: [
+
+        {
+          data: "fname"
+        },
+        {
+          data: "lname"
+        },
+        {
+          data: "email"
+        },
+        {
+          data: "telephone"
+        },
+        {
+          data: "apiKey"
+        },
+        {
+          data: "password"
+        }
+        
+      ]
+    });
+  });
+</script>
+
+  <div class="container">
+    <table id="usertable" class="table table-striped table-bordered compact hover" style="width 100%">
+      <thead>
+        <tr>
+          <th>fname</th>
+          <th>lname</th>
+          <th>email</th>
+          <th>telephone</th>
+          <th>APIkey</th>
+          <th>password</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+</body>
+
+</html>

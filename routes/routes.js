@@ -8,7 +8,7 @@ function ensureAuthenticated (req, res, next) {
   if (req.isAuthenticated()) {
     next();
   } else {
-    req.flash('info', 'You must be logged in to edit bio.');
+    req.flash('info', 'You must be logged in.');
     res.redirect('/');
   }
 }
@@ -18,6 +18,21 @@ router.use(function (req, res, next) {
   res.locals.errors = req.flash('error');
   res.locals.infos = req.flash('info');
   next();
+});
+
+/* render datatable page. */
+router.get('/table', ensureAuthenticated, function (req, res, next) {
+  res.render('index', { title: 'dataTable' });
+});
+
+/* GET table data content. */
+router.get('/datatableusers', function (req, res, next) {
+  User.find()
+    .sort({ createdAt: 'descending' })
+    .exec(function (err, users) {
+      if (err) { return next(err); }
+      res.json(users);
+    });
 });
 
 /* GET users listing. */
@@ -83,12 +98,6 @@ router.post('/signup', function (req, res, next) {
   failureRedirect: '/signup',
   failureFlash: true
 }));
-
-/*
-router.get('/frontpage', function (req, res) {
-  res.render('frontpage');
-});
-*/
 
 router.get('/users/:username', function (req, res, next) {
   User.findOne({ username: req.params.username }, function (err, user) {

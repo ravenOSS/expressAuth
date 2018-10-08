@@ -1,11 +1,14 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+body{
+  background-color: #f39c12;
 }
-.li.nav-item {
-  list-style: none;
+
+.page-item.active .page-link{
+  background-color: #f31212
 }
+ .btn.btn-primary{
+   background-color: #f31212
+ }

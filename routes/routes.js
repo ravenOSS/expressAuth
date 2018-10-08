@@ -22,7 +22,7 @@ router.use(function (req, res, next) {
 
 /* render datatable page. */
 router.get('/table', ensureAuthenticated, function (req, res, next) {
-  res.render('index', { title: 'dataTable' });
+  res.render('userdetail', { title: 'dataTable' });
 });
 
 /* GET table data content. */

@@ -1,0 +1,45 @@
+<% include _header %>
+<% include _css-js.ejs %>
+
+<script>
+  $(document).ready(function () {
+    $('#usertable').DataTable({
+      "scrollY": "100px",
+      "scrollCollapse": true,
+      "ajax": {
+        "url": "http://192.168.0.101:3000/datatableusers",
+        "dataSrc": ""
+      },
+      columns: [
+        { data: "fname" },
+        { data: "lname" },
+        { data: "email" },
+        { data: "telephone" },
+        { data: "apiKey" },
+        { data: "password" }
+      ]
+    });
+    $('.dataTables_length').addClass('bs-select');
+  });
+</script>
+
+<div class="container">
+  <br>
+  <div class="table-responsive">
+    <table id="usertable" class="table table-dark table-striped table-bordered table-hover table-sm text-nowrap">
+      <thead>
+        <tr>
+          <th>fname</th>
+          <th>lname</th>
+          <th>email</th>
+          <th>telephone</th>
+          <th>APIkey</th>
+          <th>password</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  </div>
+</body>
+
+</html>

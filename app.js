@@ -5,8 +5,8 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var flash = require('connect-flash');
 var session = require('express-session');
+var ip = require('ip');
 var logger = require('morgan');
-var mongoose = require('mongoose');
 var passport = require('passport');
 var routes = require('./routes/routes');
 require('./database/db');
@@ -15,10 +15,11 @@ var setUpPassport = require('./utilities/setuppassport');
 var cors = require('cors');
 var app = express();
 
-// mongoose.connect('mongodb://localhost/auth');
-
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
+var addr = ip.address();
+console.log('IP Address:', addr);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

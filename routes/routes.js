@@ -25,8 +25,8 @@ router.get('/table', ensureAuthenticated, function (req, res, next) {
   res.render('userdetail', { title: 'dataTable' });
 });
 
-/* GET table data content. */
-router.get('/datatableusers', function (req, res, next) {
+/* This is the api route to get the datatable ajax data */
+router.get('/usertable', function (req, res, next) {
   User.find()
     .sort({ createdAt: 'descending' })
     .exec(function (err, users) {

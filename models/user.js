@@ -45,3 +45,14 @@ userSchema.methods.name = function () {
 };
 var User = mongoose.model('User', userSchema);
 module.exports = User;
+/*
+// generating a hashed password
+userSchema.methods.generateHash = function (password) {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(12), null);
+};
+
+// Note that validPassword is used in passport
+userSchema.methods.validPassword = function (password) {
+  return bcrypt.compareSync(password, this.password);
+};
+*/

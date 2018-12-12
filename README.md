@@ -19,3 +19,4 @@ Also makes explicit http.listen on IP address and port.
 
 Model for device registration and listing.
 
+TODO: flash messaging

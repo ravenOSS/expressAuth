@@ -31,6 +31,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+// needs server side session store
 app.use(session({
   secret: '>><<NNBLKJHGFDAqwwettyuio))((*&%$#',
   resave: true,

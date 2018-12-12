@@ -20,48 +20,8 @@ router.use(function (req, res, next) {
   next();
 });
 
-/* render datatable page. */
-router.get('/table', ensureAuthenticated, function (req, res, next) {
-  res.render('userdetail', { title: 'dataTable' });
-});
-
-/* This is the api route to get the datatable ajax data */
-router.get('/usertable', function (req, res, next) {
-  User.find()
-    .sort({ createdAt: 'descending' })
-    .exec(function (err, users) {
-      if (err) { return next(err); }
-      res.json(users);
-    });
-});
-
-/* GET users listing. */
-router.get('/users', ensureAuthenticated, function (req, res, next) {
-  User.find()
-    .sort({ createdAt: 'descending' })
-    .exec(function (err, users) {
-      if (err) { return next(err); }
-      res.render('userlist', { users: users });
-    });
-});
-
 router.get('/', function (req, res) {
   res.render('frontpage');
-});
-
-router.get('/login', function (req, res) {
-  res.render('login');
-});
-
-router.post('/login', passport.authenticate('login', {
-  successRedirect: '/users',
-  failureRedirect: '/signup',
-  failureFlash: true
-}));
-
-router.get('/logout', function (req, res) {
-  req.logout();
-  res.redirect('/');
 });
 
 router.get('/signup', function (req, res) {
@@ -98,6 +58,46 @@ router.post('/signup', function (req, res, next) {
   failureRedirect: '/signup',
   failureFlash: true
 }));
+
+router.get('/login', function (req, res) {
+  res.render('login');
+});
+
+router.post('/login', passport.authenticate('login', {
+  successRedirect: '/users',
+  failureRedirect: '/signup',
+  failureFlash: true
+}));
+
+router.get('/logout', function (req, res) {
+  req.logout();
+  res.redirect('/');
+});
+
+/* render datatable page. */
+router.get('/table', ensureAuthenticated, function (req, res, next) {
+  res.render('userdetail', { title: 'dataTable' });
+});
+
+/* This is the api route to get the datatable ajax data */
+router.get('/usertable', function (req, res, next) {
+  User.find()
+    .sort({ createdAt: 'descending' })
+    .exec(function (err, users) {
+      if (err) { return next(err); }
+      res.json(users);
+    });
+});
+
+/* GET users listing. */
+router.get('/users', ensureAuthenticated, function (req, res, next) {
+  User.find()
+    .sort({ createdAt: 'descending' })
+    .exec(function (err, users) {
+      if (err) { return next(err); }
+      res.render('userlist', { users: users });
+    });
+});
 
 router.get('/users/:username', function (req, res, next) {
   User.findOne({ username: req.params.username }, function (err, user) {

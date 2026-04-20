@@ -5,20 +5,33 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var flash = require('connect-flash');
 var session = require('express-session');
-var ip = require('ip');
 var logger = require('morgan');
 var passport = require('passport');
 var routes = require('./routes/routes');
 require('./database/db');
 var favicon = require('serve-favicon');
 var setUpPassport = require('./utilities/setuppassport');
+var os = require('os');
 // var cors = require('cors');
 var app = express();
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
-var addr = ip.address();
+function getLocalIpAddress() {
+  var interfaces = os.networkInterfaces();
+  for (var name in interfaces) {
+    var entries = interfaces[name] || [];
+    for (var i = 0; i < entries.length; i += 1) {
+      if (entries[i].family === 'IPv4' && !entries[i].internal) {
+        return entries[i].address;
+      }
+    }
+  }
+  return '127.0.0.1';
+}
+
+var addr = getLocalIpAddress();
 console.log('IP Address:', addr);
 
 // view engine setup
